@@ -1,0 +1,57 @@
+# - name: Upload wkhtmltopdf
+#   #shell: "sudo wget http://downloads.sourceforge.net/project/wkhtmltopdf/archive/0.12.1/wkhtmltox-0.12.1_linux-trusty-i386.deb "
+#   get_url: url=http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb dest=/home/deploy mode=0755
+#   #sudo: yes
+#   sudo_user: "{{ rbenv_user }}"
+#   tags: wkhtmltopdf
+
+# - name: Run wkhtmltopdf
+#   shell: "sudo dpkg -i /home/deploy/wkhtmltox-0.12.1_linux-trusty-i386.deb"
+#   sudo: yes
+#   sudo_user: "{{ rbenv_user }}"
+#   tags: wkhtmltopdf
+
+# - name: Set up dependencies
+#   shell: "sudo apt-get -f install"
+#   sudo: yes
+#   sudo_user: "{{ rbenv_user }}"
+#   tags: wkhtmltopdf
+
+# # - name: Create symblic link in /usr/local/bin/ 1
+# #   shell: "echo 'xvfb-run -a -s "-screen 0 640x480x16" wkhtmltopdf "$@"' > wkhtmltopdf.sh"
+# #   sudo: yes
+# #   sudo_user: "{{ rbenv_user }}"
+# #   tags: wkhtmltopdf
+
+- name: Create the wkhtmltopdf app directory.
+  sudo: yes
+  file: state=directory path=/opt/wkhtmltopdf mode=0777
+  tags: wkhtmltopdf
+
+- name: Fetching wkhtmltopdf archive
+  sudo: yes
+  get_url: url=http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb dest=/opt/wkhtmltopdf validate_certs=no mode=0777
+  tags: wkhtmltopdf
+
+- name: Install wkthtmltopdf package
+  sudo: yes
+  shell: 'sudo dpkg -i /opt/wkhtmltopdf/wkhtmltox-0.12.1_linux-trusty-amd64.deb'
+  tags: wkhtmltopdf
+
+# - name: Create symblic link in /usr/local/bin/ 1
+#   shell: "echo 'xvfb-run -a -s "-screen 0 640x480x16" wkhtmltopdf "$@"' > wkhtmltopdf.sh"
+#   sudo: yes
+#   sudo_user: "{{ rbenv_user }}"
+#   tags: wkhtmltopdf
+
+# - name: Create symblic link in /usr/local/bin/ 2
+#   shell: "sudo chmod a+x wkhtmltopdf.sh"
+#   sudo: yes
+#   sudo_user: "{{ rbenv_user }}"
+#   tags: wkhtmltopdf
+
+# - name: Create symblic link in /usr/local/bin/ 3
+#   shell: "sudo mv wkhtmltopdf.sh /usr/local/bin/"
+#   sudo: yes
+#   sudo_user: "{{ rbenv_user }}"
+#   tags: wkhtmltopdf

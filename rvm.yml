@@ -1,0 +1,6 @@
+---
+- name: Install rvm and the ruby version needed
+  hosts: all
+  user: deploy
+  roles:
+    - rvm

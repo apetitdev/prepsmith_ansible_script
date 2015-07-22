@@ -1,0 +1,6 @@
+---
+- name: Configure simplecv app
+  hosts: all
+  remote_user: deploy
+  roles:
+    - simpleCV

@@ -1,0 +1,18 @@
+---
+- name: install simpleCV dependencies
+  sudo: yes
+  apt: name={{item}} state=present
+  with_items:
+  - ipython
+  - python-opencv
+  - python-scipy
+  - python-numpy
+  - python-pygame
+  - python-setuptools
+  - python-pip
+  tags: simpleCV
+
+- name: Install simpleCV
+  sudo: yes
+  shell: sudo pip install https://github.com/sightmachine/SimpleCV/zipball/develop
+  tags: simpleCV

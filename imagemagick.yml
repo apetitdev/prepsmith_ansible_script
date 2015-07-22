@@ -1,0 +1,6 @@
+---
+- name: Configure imagemagick app
+  hosts: all
+  remote_user: deploy
+  roles:
+    - imagemagick

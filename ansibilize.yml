@@ -1,0 +1,12 @@
+---
+- include: common.yml
+- include: common_rails.yml
+- include: webservers.yml
+- include: appservers.yml
+- include: rvm.yml
+- include: dbservers.yml
+- include: redisservers.yml
+- include: bgservers.yml
+- include: imagemagick.yml
+- include: simpleCV.yml
+- include: wkhtmltopdf.yml

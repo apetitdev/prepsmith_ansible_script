@@ -1,0 +1,84 @@
+---
+# application name 
+application: "{{ application_name }}_{{ rails_env }}"
+
+# Local setting for storing generated passwords, SSH key and project directory
+local_home: "{{ lookup('env', 'HOME') }}"
+local_project_directory: "{{ local_home }}/Projects/Personal/{{ application }}"
+local_ssh_key: "{{ local_home }}/.ssh/id_rsa.pub"
+
+# Paths on the remote servers
+current_path: /home/{{ user }}/apps/{{ application }}/current
+shared_path: /home/{{ user }}/apps/{{ application }}/shared
+
+# User configuration
+user: deploy
+# Uncomment the below lines to setup the user groups and password for the deploy user if needed.
+# user_group: sudo
+# user_password: NewPathway2015-2016!
+
+# Ruby
+ruby_url: http://cache.ruby-lang.org/pub/ruby/2.0/ruby-{{ ruby_version }}.tar.gz
+rbenv_user: "deploy"
+ruby_version: "2.0.0-p195"
+
+# Monit
+monit_log: "{{ shared_path }}/log/monit.log"
+
+# Pubsub
+# faye_host: "{{ groups['pubsubservers'][0] }}"
+# faye_token: "{{ lookup('password', local_home + '/' + application + '/faye_token length=64') }}"
+# faye_pid: "{{ current_path }}/tmp/pids/faye.pid"
+
+# Redis
+redis_ip: "{{ groups['redisservers'][0] }}"
+redis_port: 6379
+
+# Postgresql
+postgres_version: 9.3
+postgresql_host: "{{ groups['dbservers'][0] }}"
+postgresql_database:  "{{ application }}" 
+postgresql_port: 5432
+postgresql_password: "Password1!"
+postgresql_local_auth_type:  "md5"
+postgresql_pid:  "/var/run/postgresql/{{ postgresql_version }}-main.pid" 
+use_hstore:  true 
+
+# Unicorn
+unicorn_pid: "{{ current_path }}/tmp/pids/unicorn.pid"
+unicorn_config: "{{ shared_path }}/config/unicorn.rb"
+unicorn_log: "{{ shared_path }}/log/unicorn.log"
+unicorn_socket: /tmp/unicorn.{{ application }}.sock
+unicorn_workers: 
+
+# RVM
+rvm1_temp_download_path: '/tmp'
+rvm1_user: 'deploy'
+rvm1_default_ruby_version: '{{ rvm1_rubies | last if rvm1_rubies and rvm1_rubies is iterable else "" }}'
+rvm1_rvm: '{{ rvm1_install_path }}/bin/rvm'
+rvm1_rvm_version: 'stable'
+rvm1_symlink_binaries:
+  - 'bundle'
+  - 'bundler'
+  - 'erb'
+  - 'executable-hooks-uninstaller'
+  - 'gem'
+  - 'irb'
+  - 'rake'
+  - 'rdoc'
+  - 'ri'
+  - 'ruby'
+  - 'testrb'
+
+rvm1_symlink_to: '/usr/local/bin'
+rvm1_install_flags: '--auto-dotfiles'
+rvm1_ruby_install_flags: '--auto-dotfiles'
+rvm1_install_path: '/home/deploy/.rvm'
+rvm1_rvm_latest_installer: 'https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer'
+rvm1_rubies:
+  - 'ruby-2.0.0-p195'
+rvm1_gpg_keys: 'D39DC0E3'
+rvm1_gpg_key_server: 'hkp://keys.gnupg.net'
+rvm1_autolib_mode: 3
+rvm1_rvm_check_for_updates: True
+rvm1_delete_ruby: ''
