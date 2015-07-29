@@ -1,0 +1,19 @@
+---
+
+- name: install common packages
+  sudo: yes
+  apt: pkg={{item}} state=present force=yes
+  with_items:
+    - nodejs
+
+- name: install common packages
+  sudo: yes
+  apt: pkg={{item}} state=present force=yes
+  with_items:
+    - npm
+
+- include: sails.yml
+- include: geddy.yml
+- include: ember.yml
+- include: cordova.yml
+- include: ionic.yml

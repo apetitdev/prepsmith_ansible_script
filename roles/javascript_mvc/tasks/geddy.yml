@@ -1,0 +1,9 @@
+---
+
+- name: Install geddy
+  npm: >
+   name=geddy
+   state=present
+   global=yes
+  tags: geddy
+  sudo: yes

@@ -1,0 +1,9 @@
+---
+
+- name: Install Ionic
+  npm: >
+   name=ionic
+   state=present
+   global=yes
+  tags: ionic
+  sudo: yes

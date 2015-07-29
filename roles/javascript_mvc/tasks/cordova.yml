@@ -1,0 +1,9 @@
+---
+
+- name: Install Cordova
+  npm: >
+   name=cordova
+   state=present
+   global=yes
+  tags: ionic
+  sudo: yes

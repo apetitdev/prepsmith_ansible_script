@@ -1,0 +1,17 @@
+---
+
+- name: Install Ember 1
+  npm: >
+   name=ember-cli
+   state=present
+   global=yes
+  tags: Ember
+  sudo: yes
+
+- name: Install Ember 2
+  npm: >
+   name=phantomjs
+   state=present
+   global=yes
+  tags: Ember
+  sudo: yes

@@ -9,16 +9,17 @@
 
 - name: update apt-get 
   sudo: yes
-  apt: update_cache=yes upgrade=safe force=True
+  apt: update_cache=yes upgrade=safe force=yes
 
-- name: install postgresql
+- name: install postgresql libraries
   sudo: yes
-  apt: name={{item}} state=present
+  apt: name={{item}} state=present force=yes
   with_items:
   - postgresql-{{ postgres_version }}
   - libpq-dev
   - postgresql-contrib-{{ postgres_version }}
   - python-psycopg2
+  - pidentd
 
 - name: update postgresql authentication type
   sudo: yes
@@ -27,12 +28,12 @@
 
 - meta: flush_handlers # We need to run this handler so the auth methods are relaxed
 
-- name: create postgres user
-  postgresql_user: login_host=localhost name={{ user }} password={{ postgresql_password }} fail_on_user=yes state=present role_attr_flags=CREATEDB,SUPERUSER
+# - name: create postgres user
+#   postgresql_user: login_host=localhost name={{ user }} password={{ postgresql_password }} fail_on_user=yes state=present role_attr_flags=CREATEDB,SUPERUSER
 
-- name: create database
-  sudo: yes
-  postgresql_db: name={{ application }} owner={{ user }} state=present login_host=localhost
+# - name: create database
+#   sudo: yes
+#   postgresql_db: name={{ application }} owner={{ user }} state=present login_host=localhost
 
 - name: create hstore extension
   command: psql -U postgres -c "create extension if not exists hstore;"

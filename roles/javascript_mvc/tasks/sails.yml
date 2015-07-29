@@ -1,0 +1,9 @@
+---
+
+- name: Install Sails
+  npm: >
+   name=sails
+   state=present
+   global=yes
+  tags: sails
+  sudo: yes
