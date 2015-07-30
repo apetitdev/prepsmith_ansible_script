@@ -24,6 +24,14 @@
   when: detect_default_ruby_version.stdout == '' or
         rvm1_default_ruby_version not in detect_default_ruby_version.stdout
 
+- name: change gem sources 1
+  shell: gem source -a https://ruby.taobao.org
+  ignore_errors: True
+
+- name: change gem sources 1
+  shell: gem source -r https://rubygems.org
+  ignore_errors: True
+
 - name: Install bundler if not installed
   shell: >
     {{ rvm1_install_path }}/wrappers/{{ item }}/gem list

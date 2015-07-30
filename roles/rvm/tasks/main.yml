@@ -1,4 +1,14 @@
 ---
 
+- name: install needed libraries
+  sudo: yes
+  apt: name={{item}} state=present force=yes
+  with_items:
+  - libffi-dev
+  - libncurses5-dev
+  - libgdbm-dev
+  - sqlite3
+  - gawk    
+
 - include: rvm.yml
 - include: ruby.yml

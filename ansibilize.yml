@@ -8,5 +8,5 @@
 - include: redisservers.yml
 - include: bgservers.yml
 - include: imagemagick.yml
-- include: simpleCV.yml
+- include: simplecv.yml
 - include: wkhtmltopdf.yml
