@@ -1,6 +1,6 @@
 ---
 - name: Configure Database Servers
   hosts: dbservers
-  user: deploy
+  user: {{ user }}
   roles:
     - db

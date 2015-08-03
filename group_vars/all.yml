@@ -73,7 +73,7 @@ rvm1_symlink_binaries:
 rvm1_symlink_to: '/usr/local/bin'
 rvm1_install_flags: '--auto-dotfiles'
 rvm1_ruby_install_flags: '--auto-dotfiles'
-rvm1_install_path: '/home/deploy/.rvm'
+rvm1_install_path: '/home/{{ user }}/.rvm'
 rvm1_rvm_latest_installer: 'https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer'
 rvm1_rubies:
   - 'ruby-2.0.0-p195'

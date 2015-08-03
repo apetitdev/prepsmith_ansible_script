@@ -1,6 +1,6 @@
 ---
 - name: Configure wkhtmltopdf app
   hosts: all
-  remote_user: deploy
+  remote_user: {{ user }}
   roles:
     - wkhtmltopdf

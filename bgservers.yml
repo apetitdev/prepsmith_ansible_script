@@ -1,6 +1,6 @@
 ---
 - name: Configure Background Servers
   hosts: bgservers
-  user: deploy
+  user: {{ user }}
   roles:
     - background
