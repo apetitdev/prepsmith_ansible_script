@@ -1,6 +1,6 @@
 ---
 - name: Apply Common Configuration to nodes that need the rails config files 
   hosts: rails
-  user: {{ user }}
+  user: deployer
   roles: 
     - common_rails

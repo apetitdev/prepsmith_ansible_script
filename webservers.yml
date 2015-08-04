@@ -1,6 +1,6 @@
 ---
 - name: Configure Web Servers
   hosts: webservers
-  user: {{ user }}
+  user: deployer
   roles:
     - web

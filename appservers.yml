@@ -1,6 +1,6 @@
 ---
 - name: Configure App Servers
   hosts: appservers
-  user: {{ user }}
+  user: deployer
   roles:
     - app
