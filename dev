@@ -1,20 +1,20 @@
 [appservers]
-128.199.70.81
+128.199.64.213
 
 [webservers]
-128.199.70.81
+128.199.64.213
 
 [dbservers]
-128.199.70.81
+128.199.64.213
 
 [bgservers]
-128.199.70.81
+128.199.64.213
 
 [pubsubservers]
-128.199.70.81
+128.199.64.213
 
 [redisservers]
-128.199.70.81
+128.199.64.213
 
 [rails:children]
 appservers
@@ -23,4 +23,4 @@ pubsubservers
 
 [rails:vars]
 rails_env=dev
-application_name=prepsmith
+application_name=apple_jacks

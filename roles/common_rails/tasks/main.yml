@@ -1,5 +1,6 @@
 ---
 - name: create shared directory
+  sudo: yes
   file: path={{ shared_path }}/config/initializers owner={{ user }} state=directory
 
 - name: get current ruby version

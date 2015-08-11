@@ -1,6 +1,6 @@
 ---
 # application name 
-application: "{{ application_name }}_{{ rails_env }}"
+application: "{{ application_name }}"
 
 # Local setting for storing generated passwords, SSH key and project directory
 local_home: "{{ lookup('env', 'HOME') }}"
@@ -12,14 +12,14 @@ current_path: /home/{{ user }}/apps/{{ application }}/current
 shared_path: /home/{{ user }}/apps/{{ application }}/shared
 
 # User configuration
-user: deploy
+user: deployer
 # Uncomment the below lines to setup the user groups and password for the deploy user if needed.
 # user_group: sudo
 # user_password: NewPathway2015-2016!
 
 # Ruby
 ruby_url: http://cache.ruby-lang.org/pub/ruby/2.0/ruby-{{ ruby_version }}.tar.gz
-rbenv_user: "deploy"
+rbenv_user: "deployer"
 ruby_version: "2.0.0-p195"
 
 # Monit
@@ -53,7 +53,7 @@ unicorn_workers:
 
 # RVM
 rvm1_temp_download_path: '/tmp'
-rvm1_user: 'deploy'
+rvm1_user: 'deployer'
 rvm1_default_ruby_version: '{{ rvm1_rubies | last if rvm1_rubies and rvm1_rubies is iterable else "" }}'
 rvm1_rvm: '{{ rvm1_install_path }}/bin/rvm'
 rvm1_rvm_version: 'stable'
