@@ -90,6 +90,7 @@
   command: "sudo -iu {{ rbenv_user }} rbenv install {{ ruby_version_rbenv }}"
   when: ruby_check_install|failed
   tags: rbenv
+  ignore_errors: True
 
 - name: "Check if {{ ruby_version_rbenv }} is the default ruby version"
   shell: "sudo -iu {{ rbenv_user }} rbenv version | grep {{ ruby_version_rbenv }}"
@@ -110,6 +111,19 @@
 
 # THis one is little bit special since the version 2.0.0-p195 doesn't work very well with a simple rbenv install
 - name: "Set the good version of ruby"
-  command: 'curl -fsSL https://gist.github.com/LeonB/10503374/raw | rbenv install --patch 2.0.0-p195'
+  command: 'sudo -iu {{ rbenv_user }} curl -fsSL https://gist.github.com/LeonB/10503374/raw | rbenv install --patch 2.0.0-p195'
   tags: set up 2.0.0-p195
   ignore_errors: True
+
+# THis one is little bit special since the version 2.0.0-p195 doesn't work very well with a simple rbenv install
+- name: "Set rbenv local somewhere"
+  command: 'cd /homde/{{ rbenv_user }} && rbenv local {{ ruby_version_rbenv }}'
+  tags: set up local to the good ruby version
+  ignore_errors: True
+
+# THis one is little bit special since the version 2.0.0-p195 doesn't work very well with a simple rbenv install
+- name: "Install the bundler"
+  command: 'cd /homde/{{ rbenv_user }} && gem install bundler'
+  tags: set up bundler with the require ruby version
+  ignore_errors: True
+

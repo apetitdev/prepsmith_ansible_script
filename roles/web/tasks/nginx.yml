@@ -5,7 +5,20 @@
 
 - name: setup nginx
   sudo: yes
-  template: src=default.conf.j2 dest=/etc/nginx/sites-enabled/default.conf
+  template: src=default.conf.j2 dest=/etc/nginx/sites-available/prepsmith.conf
+
+- name: set nginx 
+  sudo: yes
+  file: path={{ item }} state=absent
+  with_items:
+    - /etc/nginx/sites-enabled/default
+    - /etc/nginx/sites-enabled/default.conf
+    - /etc/nginx/sites-available/default
+    - /etc/nginx/sites-available/default.conf
+
+- name: setup nginx
+  sudo: yes
+  command: ln -s /etc/nginx/sites-available/prepsmith.conf /etc/nginx/sites-enabled/prepsmith.conf
   notify: restart nginx
 
 - name: create nginx monit file
