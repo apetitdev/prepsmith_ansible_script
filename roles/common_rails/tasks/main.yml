@@ -1,7 +1,10 @@
 ---
 - name: create shared directory
   sudo: yes
-  file: path={{ shared_path }}/config/initializers owner={{ user }} state=directory
+  file: path={{ item }} owner={{ user }} state=directory
+  with_items:
+    - '{{ shared_path }}/config/initializers'
+    - '{{ shared_path }}/uploads'
 
 - name: get current ruby version
   command: ruby -v 
@@ -11,6 +14,8 @@
 # - include: ruby.yml 
 #   when: result.rc !=0 or result.stdout.split()[1] != ruby_version
 - include: generate_database.yml
+- include: environment.yml
+- include: sidekiq.yml
 # - include: generate_faye_token.yml
 # - include: generate_resque.yml
 # - include: copy_github_oauth_token.yml

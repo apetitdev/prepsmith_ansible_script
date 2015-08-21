@@ -115,15 +115,10 @@
   tags: set up 2.0.0-p195
   ignore_errors: True
 
-# THis one is little bit special since the version 2.0.0-p195 doesn't work very well with a simple rbenv install
-- name: "Set rbenv local somewhere"
-  command: 'cd /homde/{{ rbenv_user }} && rbenv local {{ ruby_version_rbenv }}'
-  tags: set up local to the good ruby version
-  ignore_errors: True
 
 # THis one is little bit special since the version 2.0.0-p195 doesn't work very well with a simple rbenv install
 - name: "Install the bundler"
-  command: 'cd /homde/{{ rbenv_user }} && gem install bundler'
+  command: 'RBENV_ROOT=~/.rbenv RBENV_VERSION={{ ruby_version_rbenv }} ~/.rbenv/bin/rbenv exec gem install bundler'
   tags: set up bundler with the require ruby version
   ignore_errors: True
 
