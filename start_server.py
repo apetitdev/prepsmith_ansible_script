@@ -39,7 +39,7 @@ class basic_server_settings():
 
 		if password is None or password == '':
 
-			password = self.__id_generator(12)
+			password = self.__id_generator(24)
 
 		return password
 
@@ -66,7 +66,7 @@ class basic_server_settings():
 
 		mode = 'a' if os.path.exists('password.text') else 'w'
 
-		with open('password.text', mode) as f:
+		with open("/home/" + str(deploy_user) + "/password.text", mode) as f:
 
 			f.write(password + '\n')
 
@@ -94,7 +94,7 @@ class basic_server_settings():
 
 		deploy_user = self.__set_deploy_user(deploy_user)
 
-		paths = ["/home/" + str(deploy_user) + "/.ssh","/home/" + str(deploy_user) + '/.ssh/authorized_keys']
+		paths = ["/home/" + str(deploy_user) + "/.ssh","/home/" + str(deploy_user) + '/.ssh/authorized_keys', "/home/" + str(deploy_user) + "/password.text"]
 
 		for path in paths:
 
