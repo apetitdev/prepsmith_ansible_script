@@ -138,7 +138,7 @@ class basic_server_settings():
 
 		with open(sudoer_file, 'a') as f:
 
-			f.write(deploy_user + '    ALL=(ALL:ALL) ALL')
+			f.write(deploy_user + '    ALL=(ALL:ALL) ALL \n')
 
 
 

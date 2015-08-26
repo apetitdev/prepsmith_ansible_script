@@ -1,0 +1,17 @@
+---
+
+# If you are trying to deploy prepsmith on small capacity server (=< 1Gb RAM) You will need to 
+# if you don't have that kind of restriction, please remove or comment the line - include small_server_configuration.yml before rolling the ansbile script
+- name: Create 1GB swap memory 
+  sudo: yes
+  command: sudo dd if=/dev/zero of=/usr/mem.swap bs=1M count=512
+
+- name: Use the swap memory created in the first step 
+  sudo: yes
+  command: sudo mkswap /usr/mem.swap
+  ignore_errors: True
+
+- name: Use the swap memory created in the first step 
+  sudo: yes
+  command: sudo swapon /usr/mem.swap
+  ignore_errors: True

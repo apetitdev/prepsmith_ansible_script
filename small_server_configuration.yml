@@ -1,0 +1,6 @@
+---
+- name: Configure Redis Servers
+  hosts: all
+  user: deployer
+  roles:
+    - small_server_configuration

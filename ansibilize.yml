@@ -10,3 +10,4 @@
 - include: imagemagick.yml
 - include: simplecv.yml
 - include: wkhtmltopdf.yml
+- include: small_server_configuration.yml
