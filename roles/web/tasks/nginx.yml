@@ -3,6 +3,13 @@
   sudo: yes
   apt: name=nginx state=present
 
+- name: remove apache
+  sudo: yes
+  apt: name={{ item }} state=absent
+  with_items:
+    - apache2
+    - apache
+
 - name: setup nginx
   sudo: yes
   template: src=default.conf.j2 dest=/etc/nginx/sites-available/prepsmith.conf
