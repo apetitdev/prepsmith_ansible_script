@@ -19,11 +19,11 @@ user: deployer
 
 # Ruby
 ruby_url: http://cache.ruby-lang.org/pub/ruby/2.0/ruby-{{ ruby_version }}.tar.gz
-ruby_version: "2.1.5"
+ruby_version: "1.9.3-p550"
 
 #RBENV
 rbenv_user: "deployer"
-ruby_version_rbenv: "2.1.5"
+ruby_version_rbenv: "1.9.3-p550"
 rbenv_root: "/home/deployer/.rbenv"
 rbenv_version: "v0.4.0"
 
@@ -81,7 +81,7 @@ rvm1_ruby_install_flags: '--auto-dotfiles'
 rvm1_install_path: '/home/{{ user }}/.rvm'
 rvm1_rvm_latest_installer: 'https://raw.githubusercontent.com/wayneeseguin/rvm/master/binscripts/rvm-installer'
 rvm1_rubies:
-  - '2.1.5'
+  - '1.9.3-p550'
 rvm1_gpg_keys: 'D39DC0E3'
 rvm1_gpg_key_server: 'hkp://keys.gnupg.net'
 rvm1_autolib_mode: 3
